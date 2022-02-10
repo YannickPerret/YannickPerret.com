@@ -9,6 +9,9 @@ const Articles = (props) => {
         props.onChangeSelectedItem(0)
     }
 
+    let createDate = new Date(props.item.dateCreated).toLocaleString()
+    let updateDate = props.item.dateUpdate ? new Date(props.item.dateUpdate).toLocaleString() : false
+
     return (
         <>
             <span onClick={()=>handleBackToAllPost()} className="content__backList"> <FontAwesomeIcon icon={faArrowLeft} />Revenir à la liste</span><br />
@@ -28,7 +31,7 @@ const Articles = (props) => {
                     <p>{props.item.content}</p>
                 </div>
                 <footer className="article__footer">
-                    <p>Créer le {props.item.dateCreated}</p> <p>Dernière modification le {props.item.dateUpdate}</p>
+                    <p>Créer le {createDate}</p> <p>{!updateDate ? null: "Dernière modification le "+updateDate}</p>
                 </footer>
 
                 <Comments />

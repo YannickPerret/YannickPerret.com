@@ -127,6 +127,10 @@ main{
             border-radius: 15px;
             border:none;
             padding : 15px 25px;
+            margin-left: 2vw;
+        }
+        h2 {
+            font-size: 2rem;
         }
     }
     &__backList{
@@ -268,6 +272,7 @@ main{
 
         h2{
             margin-top : 3vh;
+            
         }
     }
 

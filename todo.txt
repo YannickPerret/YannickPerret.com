@@ -1,0 +1,16 @@
+blog :
+ - Trier par année
+ - Trier par Tag
+
+ - Afficher des posts formaté (wysiwing, markdown)
+ - Créer un système admin pour créer, modifier, supprimer des posts
+ (update : Créer un système de versionning d'article)
+
+ créer un système de commentaire visiteur (captcha)
+
+ Hero :
+ Animation sur un text qui arrive sur la page
+
+ Realisation
+
+ Services

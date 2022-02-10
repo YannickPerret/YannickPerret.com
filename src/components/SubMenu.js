@@ -4,7 +4,7 @@ const SubMenu = () =>{
     return(
         <div className="submenu">
             <div className="submenu__category">
-                Par Catégorie
+                Par Catégories
                 <ul>
                     <li><a href="category=reactJs">ReactJs</a></li>
                     <li><a href="category=htmlcss">HTML/CSS</a></li>
@@ -12,7 +12,7 @@ const SubMenu = () =>{
                 </ul>
             </div>
             <div className="submenu__years">
-                Par année
+                Par années
                 <ul>
                     <li><a href="category=2021">2022 </a></li>
                     <li><a href="category=2022">2021 </a></li>

@@ -29,14 +29,15 @@ class SearchBar extends React.Component{
 
     render(){
         return (
-            <form>
+            <form 
+                onSubmit={(e => e.preventDefault())}
+            >
                 <label>Rechercher un article </label>
                 <input 
                     type="text" 
                     placeholder="Je recherche..." 
                     value={this.props.filterText} 
                     onChange={this.handleFilterTextChange}
-                    onSubmit={(e => e.defaultPrevented())}
                 />
             </form>
         )
@@ -63,13 +64,14 @@ class Blog extends React.Component{
         })
     }
 
-    getDataFromSearch = (sentence) =>{
-        console.log(sentence.length)
-        if(sentence.length > 0){
-            getAPIDataFromSearch(sentence).then(data =>{
+    getDataFromSearch = (searchText) =>{
+        if (searchText.length > 0){
+            getAPIDataFromSearch(searchText).then(data =>{
+                console.log(data)
                 this.setState({posts : data})
             })
-        }else
+        }
+        else
         {
             this.getData()
         }
@@ -80,6 +82,8 @@ class Blog extends React.Component{
         this.setState({
           filterText: filterText
         });
+
+        this.getDataFromSearch(filterText)
       }
 
     changeSelectedItem = (id) =>{
@@ -109,8 +113,7 @@ class Blog extends React.Component{
                 </header>: null}
 
                 {this.state.selectedPost === 0 ?
-                this.state.posts.map((element, index) => {
-                    if(element.title.includes(this.state.filterText)){
+                this.state.posts.sort((a, b) => a.dateCreated - b.dateCreated).map((element, index) => {
                         return(
                             <Cards 
                                 item={element}
@@ -119,7 +122,7 @@ class Blog extends React.Component{
                                 onChangeElement={this.changeSelectedItem}
                             />
                         )
-                    }
+                    
                 })
                 :<div>
                     {this.state.posts.filter(item => item.id === this.state.selectedPost).map((element) =>{

@@ -1,4 +1,4 @@
-const URL = 'http://localhost:3000/api/';
+const URL = 'http://192.168.1.102:3000/api/';
 
 export const getAllData = () =>{
     return fetch(URL+ 'get')

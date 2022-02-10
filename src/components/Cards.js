@@ -9,6 +9,8 @@ const Cards = ({item : {id, title, imageTitle, image, timeRead, description, slu
         onChangeElement(id)
     }
 
+    let createDate = new Date(dateCreated).toLocaleString()    
+
     return (
         <article className="cards" onClick={(() => handleChange(id))}>
             <header className="cards__header">
@@ -28,7 +30,7 @@ const Cards = ({item : {id, title, imageTitle, image, timeRead, description, slu
                 </p>
             </div>
             <footer className="cards__footer">
-                <p>Créer le {dateCreated}</p> <p>Dernière modification le {dateUpdate}</p>
+                <p>Créer le {createDate}</p>
             </footer>
         </article>
     );
