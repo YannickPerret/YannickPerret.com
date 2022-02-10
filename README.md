@@ -1,5 +1,7 @@
 # Yannick Perret
-Site portfolio pour présenter mon travail
+This website is build with Javascript environement. 
+In first i use Webpack 5 for architecture and i added SCSS, Babel, ReactJs 
+I use NodeJs for API call with Database
 
 ## How to use
 
