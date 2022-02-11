@@ -19,7 +19,7 @@ const Cards = ({item : {id, title, imageTitle, image, timeRead, description, slu
                     <img src={image} alt={imageTitle} />
                 </div>
                 <div className="cards__subtitle">
-                    <p><FontAwesomeIcon icon={faClock} /> lecture : {timeRead} minutes</p>
+                    <p><FontAwesomeIcon icon={faClock} /> Lecture : {timeRead < 60 ? timeRead+ " minutes" : (timeRead / 60) + " heures"}</p>
                     <p><span><a href="#">#Webpack</a></span>  <span><a href="#">#nodeJS</a></span>  <span><a href="#">#Javascript</a></span>   <span><a href="#">#Web</a></span></p> 
                 </div>
             </header>

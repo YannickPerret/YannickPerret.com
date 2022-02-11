@@ -332,3 +332,15 @@ main{
 }
 
  
+
+.editor{
+    display : flex;
+    justify-content: center;
+    max-width: 1280px;
+    height: 500px;
+    border : 1px solid black;
+    
+    margin : 0 auto;
+    margin-bottom : 10vh;
+    
+}

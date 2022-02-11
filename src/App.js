@@ -5,20 +5,22 @@ import Hero from "./components/Hero";
 import Projets from "./Projets";
 import Services from "./Services";
 
-class App extends React.Component{
 
+class App extends React.Component{
     render(){
         return (
             <>
                 <SideBar />
+                
                 <Hero />
                 <main>
                     <Projets />
                     <Services />
                     <Blog />
-                </main>
+               </main>
             </>
                 
+              
         )
     }
 }

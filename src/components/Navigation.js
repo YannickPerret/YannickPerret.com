@@ -1,24 +1,26 @@
 import React from 'react';
+import { HashLink } from 'react-router-hash-link';
 
 
 const Navigation = () => {
         const handleScrollTo = (id) =>{
-            let element = document.getElementById(id)
-            element.scrollIntoView({
+            id.scrollIntoView({
                 behavior: 'smooth',
                 block: 'start'
               });
         }
-
     return (
-        <nav className="navigation">
+        <>
+            <nav className="navigation">
                 <ul className="navigation__body">
-                    <a href="javascript:void()" onClick={(() => handleScrollTo("hero"))}><li className="navigation__link">Accueil</li></a>
-                    <a href="javascript:void()" onClick={(() => handleScrollTo("projets"))}> <li  className="navigation__link">Réalisations</li></a>
-                    <a href="javascript:void()" onClick={(() => handleScrollTo("services"))}> <li  className="navigation__link">Services</li></a>
-                    <a href="javascript:void()" onClick={(() => handleScrollTo("blog"))}> <li  className="navigation__link">Blog</li></a>
+                    <HashLink to="/#hero" scroll={(el) => handleScrollTo(el)}><li className="navigation__link">Accueil</li></HashLink>
+                    <HashLink to="/#projets" scroll={(el) => handleScrollTo(el)}><li className="navigation__link">Réalisations</li></HashLink>
+                    <HashLink to="/#services" scroll={(el) => handleScrollTo(el)}><li className="navigation__link">Services</li></HashLink>
+                    <HashLink to="/#blog" scroll={(el) => handleScrollTo(el)}><li className="navigation__link">Blog</li></HashLink>
                 </ul>
             </nav>
+        </>
+        
     );
 };
 

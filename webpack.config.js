@@ -15,7 +15,7 @@ let config = {
     output:{
         filename : 'js/main.js',
 		path: path.resolve(__dirname, './public'),
-        assetModuleFilename: 'images/[name].[ext]',
+        assetModuleFilename: 'images/[name][ext]',
     },
     resolve: {
 		extensions: ['.js', '.jsx', '.png', '.jpg', '.mp4', '.gif'],

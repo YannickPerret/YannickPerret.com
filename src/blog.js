@@ -3,6 +3,7 @@ import Articles from "./components/Articles.js";
 import Cards from "./components/Cards.js";
 import { getAllData, getAPIDataFromSearch } from './API/db.js'
 import SubMenu from "./components/SubMenu.js";
+import { isEmpty } from "draft-js/lib/DefaultDraftBlockRenderMap";
 
 /* 
 Articles : 
@@ -60,7 +61,9 @@ class Blog extends React.Component{
 
     getData(){
         getAllData().then(data => {
-            this.setState({posts : data})
+            if(data !== undefined){
+                this.setState({posts : data})
+            }
         })
     }
 

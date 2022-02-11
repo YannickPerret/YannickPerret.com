@@ -23,7 +23,7 @@ const Articles = (props) => {
                     
                     </div>
                     <div className="article__subtitle">
-                        <p><FontAwesomeIcon icon={faClock} /> lecture : {props.item.timeRead} minutes</p>
+                        <p><FontAwesomeIcon icon={faClock} /> Lecture : {props.item.timeRead < 60 ? props.item.timeRead+ " minutes" : (props.item.timeRead / 60) + " heures"} </p>
                         <p><span><a href="#">#Webpack</a></span>  <span><a href="#">#nodeJS</a></span>  <span><a href="#">#Javascript</a></span>   <span><a href="#">#Web</a></span></p> 
                     </div>
                 </header>
