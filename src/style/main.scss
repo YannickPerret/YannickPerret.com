@@ -35,6 +35,11 @@ h1, h2, h3, h4 {
     }
 }
 
+.counter{
+    margin: 0 auto;
+    width: 200px;
+}
+
 main{
     display : flex;
     position: absolute;
@@ -149,6 +154,9 @@ main{
     &:hover{
         zoom: 1.02;
     }
+    a {
+        @extend .linkNoStyle;
+     }
 
     &__header{
         display : flex;

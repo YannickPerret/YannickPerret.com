@@ -1,26 +1,28 @@
 import React from "react";
 import SideBar from "./components/SideBar";
+import Home from "./Home";
 import Blog from "./blog";
-import Hero from "./components/Hero";
-import Projets from "./Projets";
-import Services from "./Services";
+import { Routes, Route } from "react-router-dom";
+import Articles from "./components/Articles";
+import PostList from "./components/PostList";
+
+import '@css/_settings.scss'
 
 
 class App extends React.Component{
-    render(){
+    render(){ 
         return (
             <>
                 <SideBar />
                 
-                <Hero />
-                <main>
-                    <Projets />
-                    <Services />
-                    <Blog />
-               </main>
+                <Routes>
+                    <Route path="/" element={<Home />}/>
+                    <Route path="blog" element={<Blog />}>
+                        <Route index element={<PostList />} />
+                    </Route> 
+                    <Route path="blog/:slug" element={<Articles />} />      
+                </Routes>
             </>
-                
-              
         )
     }
 }

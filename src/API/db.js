@@ -11,8 +11,14 @@ export const getDataFromId = (id) => {
     .catch((error) => console.log(error))
 }
 
-export const getAPIDataFromSearch = (word) => {
+export const getDataFromSearch = (word) => {
     return fetch(URL + 'getFromSearch/'+word)
     .then(response => response.json())
     .catch((error) => console.log(error))
 } 
+
+export const getDataFromSlug = (slug) =>{
+    return fetch(URL + 'getFromSlug/'+slug)
+    .then(response => response.json())
+    .catch((error) => console.log(error))
+}

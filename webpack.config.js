@@ -16,6 +16,7 @@ let config = {
         filename : 'js/main.js',
 		path: path.resolve(__dirname, './public'),
         assetModuleFilename: 'images/[name][ext]',
+        publicPath: '/'
     },
     resolve: {
 		extensions: ['.js', '.jsx', '.png', '.jpg', '.mp4', '.gif'],
@@ -24,7 +25,7 @@ let config = {
             "@css" : path.resolve("./src/style/"),
             "@images": path.resolve("./src/images/"),
             "@videos": path.resolve("./src/videos/"),
-        }
+        },
     },
     module : {
         rules:[
@@ -62,7 +63,7 @@ let config = {
     },
     plugins:[
         new MiniCssExtractPlugin({
-            filename: "css/[name].css",
+            filename: "./css/[name].css",
             chunkFilename: "[id].css"
         }),
         new ESLintPlugin({}),
@@ -98,6 +99,7 @@ module.exports = (env, args) =>{
             }),
             new HtmlWebpackPlugin({
                 template : './src/index.html', 
+                filename: 'index.html',
                 title : titlePage + " DEV", 
                 minify : false
             }),
