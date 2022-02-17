@@ -1,13 +1,14 @@
 import React from "react"
 import Yannick from "@images/YannickPerret"
 import Navigation from "./Navigation"
+import { Link } from "react-router-dom"
 
 
 const SideBar = () => {
     return (
         <div className="presentation">
             <div className="presentation__header">
-                <img src={Yannick} title="Yannick Perret portait beau gosse" className="presentation__portait"/>
+                <Link to="../"><img src={Yannick} title="Yannick Perret portait beau gosse" className="presentation__portait"/></Link>
                 <ul className="presentation__body">
                     <li>Yannick Perret</li>
                     <li>Développeur Back End option Front-end</li>

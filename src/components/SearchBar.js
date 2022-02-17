@@ -1,16 +1,26 @@
-import React from 'react';
+import React, {useState} from 'react';
+import { useDispatch } from 'react-redux';
+import { getAllPosts, getPostBySearch } from '../redux/reducer/BlogReducer';
 
-class SearchBar extends React.Component{
-    constructor(props){
-        super(props);
-        this.handleFilterTextChange = this.handleFilterTextChange.bind(this);
+
+
+const SearchBar = () =>{
+
+    const [filterData, setFilterData] = useState("")
+
+    const dispatch = useDispatch()
+
+    const handleFilterChange = (_search) =>{
+        setFilterData(_search)
+
+        if(_search.length < 1){
+            dispatch(getAllPosts())
+        }
+        else{
+            dispatch(getPostBySearch(_search))
+        }
     }
 
-    handleFilterTextChange(e){
-        this.props.onFilterTextChange(e.target.value)
-    }
-
-render(){
     return (
         <>
             <header className="content__header" >
@@ -21,15 +31,14 @@ render(){
                         <input 
                             type="text" 
                             placeholder="Je recherche..." 
-                            value={this.props.filterText} 
-                            onChange={this.handleFilterTextChange}
+                            value={filterData} 
+                            onChange={(e => handleFilterChange(e.target.value))}
                         />
                     </form>                  
                 </div>
             </header>
         </>
-        )
-    }   
+    )  
 }
 
 export default SearchBar;

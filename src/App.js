@@ -3,7 +3,7 @@ import SideBar from "./components/SideBar";
 import Home from "./Home";
 import Blog from "./blog";
 import { Routes, Route } from "react-router-dom";
-import Articles from "./components/Articles";
+import Article from "./components/Article";
 import PostList from "./components/PostList";
 
 import '@css/_settings.scss'
@@ -20,7 +20,7 @@ class App extends React.Component{
                     <Route path="blog" element={<Blog />}>
                         <Route index element={<PostList />} />
                     </Route> 
-                    <Route path="blog/:slug" element={<Articles />} />      
+                    <Route path="blog/:slug" element={<Article />} />      
                 </Routes>
             </>
         )
