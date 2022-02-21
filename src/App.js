@@ -3,8 +3,8 @@ import SideBar from "./components/SideBar";
 import Home from "./Home";
 import Blog from "./blog";
 import { Routes, Route } from "react-router-dom";
-import Article from "./components/Article";
-import PostList from "./components/PostList";
+import Article from "./components/blog/Article";
+import PostList from "./components/blog/PostList";
 
 import '@css/_settings.scss'
 

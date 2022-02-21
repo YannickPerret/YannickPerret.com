@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { useDispatch } from 'react-redux';
-import { getAllPosts, getPostBySearch } from '../redux/reducer/BlogReducer';
+import { getAllPosts, getPostBySearch } from '../../redux/reducer/BlogReducer';
 
 
 

@@ -1,6 +1,5 @@
 import React from 'react';
 import Blog from "./blog";
-import Counter from './components/counter';
 import Hero from "./components/Hero";
 import Projets from "./Projets";
 import Services from "./Services";

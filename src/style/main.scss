@@ -3,6 +3,8 @@
     src: url(./font/Italiana-Regular.ttf);
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap');
+
 
 
 *{
@@ -25,13 +27,38 @@ h1, h2, h3, h4 {
 }
 
 .hero{
+    display : flex;
     max-height: 100vh;
     overflow: hidden;
-    margin-bottom: 10vh;
-    margin-left: 220px;
+    margin-bottom: 11vh;
+    margin-left: 250px;
     video{
         width: 100%;
         height: auto;
+    }
+
+    &__title{
+        display : flex;
+        align-items: center;
+        justify-content: center;
+        width: 1200px;
+        height: 150px;
+        position: absolute;
+        background-color: rgba(215, 225, 228, 0.1);
+        
+        top : 15%;
+        left : 60%;
+        transform: translate(-60%, -15%);
+
+        h1{
+            font-family: 'Amatic SC', cursive;
+            text-transform: uppercase;
+            color : white;
+            font-weight: 700;
+            font-size: 3.5em;
+            letter-spacing: 17.5px;
+            -webkit-text-stroke: .5px black;
+        }
     }
 }
 
@@ -50,10 +77,9 @@ main{
     align-items: center;
 
     background-color: #272727;
-    border-right: 1px solid gold;
+    border-right: 5px solid #25bae7;
     color : white;
-
-    max-width: 220px;
+    max-width: 250px;
     height: 100%;
 
     top :0;
@@ -63,43 +89,126 @@ main{
     &__header{
         display: flex;
         flex-direction: column;
-        align-items: center;
         justify-content: space-between;
-        height: 325px;
-        margin : 3vh 0;
+        height: 360px;
+        margin : 3vh 0 0 0;
+        & a{
+            display : flex;
+            justify-content: center;
+            color : #fff;
+        }
     }
 
-    img{
-        width: 70%;
+    &__portrait{
+        width: 75%;
         height: auto;
-        border-radius: 150px;
-        border : 1px solid gold;
+        border-radius: 85px;
+        border : 1px solid #25bae7;
     }
-}
-.navigation{
-    width: 100%;
-    height: 400px;
 
-    &__body{
-        display: flex;
+    .informations{
+        display :flex;
         flex-direction: column;
-        list-style-type: none;
+        gap : 10px;
         padding : 0;
     }
-    &__link{
-        display : flex;
-        align-items: center;
+
+    .informations li{
+        display: flex;
         justify-content: center;
-        height: 50px;
-        border-top : 1px solid #5f5d5d;
-        border-bottom : 1px solid #5f5d5d;
-        margin : .3vh 0;
+        list-style: none;
+    }
+
+    .github{
+        img{
+            margin-right: 10px;
+            width : 32px;
+            height: 32px;
+        }
+        a{
+            align-items: center;
+        }
+    }
+}
+
+.navigation{
+    flex : 2;
+    display : flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 300px;
+
+    &__body{
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap : 25px;
+        padding-left : 10px;
+    }
+    &__link{
+        
+
+        &--1{
+            --clr:#00ade1;
+            list-style: none;
+            position: relative;
+        }
+        &--2{
+            --clr:#ff6493;
+            list-style: none;
+        position: relative;
+        }
+        &--3{
+            --clr:#ffdd1c;
+            list-style: none;
+        position: relative;
+        }
+        &--4{
+            --clr:#00dc82;
+            list-style: none;
+        position: relative;
+        }
+
     }
 
     & a{
-        @extend .linkNoStyle;
-        color : white;
-        font-size: 1.2rem;
+       position: relative;
+       font-size: 1.4em;
+       text-decoration: none;
+       line-height: 1em;
+       letter-spacing: 2px;
+       text-transform: uppercase;
+       color:white;
+    }
+
+    & a::before{
+        content:attr(data-text);
+        position: absolute;
+        color : var(--clr);
+        width : 0%;
+        overflow: hidden;
+        transition: 1s;
+        border-right: 9px solid var(--clr);
+        -webkit-text-stroke : 1px var(--clr);
+    
+    }
+    & a:hover::before{
+        width: 100%;
+        filter: drop-shadow(0 0 30px var(--clr))
+    }
+}
+
+.presentation__footer{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 250px;
+    padding-bottom : 1em;
+
+    & a {
+        color : #FFF;
     }
 }
 
@@ -108,9 +217,9 @@ main{
     display : flex ;
     flex-direction: column;
     margin-left: 230px;
-    max-width: 1230px;
+    max-width: 1350px;
     flex: 2;
-    background-color: #f1f0f0;
+    border-radius: 20px;
     
 
     &__header{
@@ -120,6 +229,8 @@ main{
         justify-content: space-around;
         height: 150px;
         padding : 15px 0;
+        background-color: #f1f0f0;
+        border-radius : 40px;
         
         input{
             width: 350px;
@@ -137,18 +248,45 @@ main{
         font-size: 1.4rem;
     }
 }
+
+
 .cards{
+    display : block;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
     margin : 2vh auto;
-    overflow-x: hidden;
     min-width: 250px;
     max-width: 980px;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
     background-color: #fff;
+    border : 2px solid #0da1db;
+
     &:hover{
         zoom: 1.02;
     }
+    &::before{
+        display : flex;
+        align-items: center;
+        justify-content: center;
+        content:attr(data-date);
+
+        border-top-right-radius : 10px;
+        border-top-left-radius : 10px;
+
+        height: 70px;
+        width: 200px;
+
+        transform: rotate(-90deg);
+        background-color : #0da1db;
+        
+        position: absolute;
+        margin-top: 12%;
+        margin-left: -7.2%;
+        z-index: -1;
+    }
+
+
+
     a {
         @extend .linkNoStyle;
      }
@@ -179,9 +317,7 @@ main{
         font-size: clamp(1.8rem, 50%, 2rem);
         z-index: 1;
         letter-spacing: 1px;
-        
     }
-
     img{
         display :block;
         position: relative;

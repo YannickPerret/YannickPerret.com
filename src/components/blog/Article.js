@@ -4,25 +4,25 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft, faClock } from '@fortawesome/free-solid-svg-icons'
 import { useParams, Link } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
-import { getPostBySlug } from '../redux/reducer/BlogReducer';
+import { getPostBySlug } from '../../redux/reducer/BlogReducer';
 
 const Article = () => { 
 
     const dispatch = useDispatch()
     const slug = useParams().slug
 
-    const item = useSelector((state) => state.posts)
+    const item = useSelector((state) => state.selectedPost)
 
     useEffect(()=> {
+        window.scrollTo(0, 0)
+
         if(slug.length > 0){
             dispatch(getPostBySlug(slug))
         }
-
-        
     }, [])
 
-    const dateCreated = new Date(item.dateCreated).toLocaleString()
-    const dateUpdate = new Date(item.dateUpdate).toLocaleString()
+    const dateCreated = new Date(item.dateCreated).toLocaleString("fr-FR")
+    const dateUpdate = new Date(item.dateUpdate).toLocaleString("fr-FR")
     return (
             <section className="article" id="blog">
                 <article className="article">

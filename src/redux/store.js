@@ -1,10 +1,6 @@
-import {createStore, combineReducers, applyMiddleware} from 'redux';
+import {createStore, applyMiddleware} from 'redux';
 import blogListPosts from './reducer/BlogReducer';
 import thunk from 'redux-thunk';
-
-const rootReducers = combineReducers({
-    blogListPosts
-})
 
 
 
