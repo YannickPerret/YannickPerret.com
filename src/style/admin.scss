@@ -1,0 +1,67 @@
+.addPost{
+    margin-left: 255px;
+    max-width: 1450px;
+    background-color: rgb(235, 232, 232);
+}
+
+.formAddPost{
+    display : flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 1080px;
+    margin : 0 auto;
+    padding-bottom: 5vh;
+    height: auto;
+    gap : 35px;
+    
+    & h1{
+        margin : 0 auto;
+    }
+
+    & h2{
+        font-weight: bold;
+    }
+
+    & input, textarea{
+        border-radius: 7px;
+        border : none;
+    }
+
+    &__image{
+        display : flex;
+        flex-direction: row;
+    }
+
+    &__title{
+        display : flex;
+        flex-direction: column;
+        & input{
+            width: 700px;
+            height: 50px;
+        }
+    }
+    &__content{
+        display : flex;
+        flex-direction: column;
+    }
+    &__wrapper{
+        height: 850px;
+        background-color: white;
+    }
+    &__editor{
+        background-color: white;
+    }
+
+
+    &__option{
+        display : flex;
+        flex-direction: row;
+        justify-content: space-evenly
+    }
+    &__submit{
+        width: 450px;
+        display : flex;
+        justify-content: space-around;
+        margin : 0 auto;
+    }
+}

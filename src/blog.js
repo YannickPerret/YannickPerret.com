@@ -34,7 +34,7 @@ const Blog = () => {
                 <Categorie />
 
                 {filterCategorie.length >= 1 ?
-                    postsList.sort((a, b) => a.dateCreated - b.dateCreated)
+                    postsList.sort((a, b) => b.dateCreated - a.dateCreated)
                     .map((element, index) => {
                         return(
                             filterCategorie.map((categorie) => {
@@ -44,8 +44,8 @@ const Blog = () => {
                         })
                         )
                     })
-                : 
-                postsList.sort((a, b) => a.dateCreated - b.dateCreated).map((element, index) => {
+                :
+                postsList.sort((a, b) =>  b.dateCreated - a.dateCreated).map((element, index) => {
                     return(
                         <PostList posts={element} key={index} />
                     )

@@ -7,6 +7,7 @@ import Article from "./components/blog/Article";
 import PostList from "./components/blog/PostList";
 
 import '@css/_settings.scss'
+import AddPost from "./admin/AddPost";
 
 
 class App extends React.Component{
@@ -20,7 +21,8 @@ class App extends React.Component{
                     <Route path="blog" element={<Blog />}>
                         <Route index element={<PostList />} />
                     </Route> 
-                    <Route path="blog/:slug" element={<Article />} />      
+                    <Route path="blog/:slug" element={<Article />} />  
+                    <Route path="admin/addpost" element={<AddPost />}/>   
                 </Routes>
             </>
         )

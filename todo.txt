@@ -6,11 +6,6 @@ blog :
  - Créer un système admin pour créer, modifier, supprimer des posts
  (update : Créer un système de versionning d'article)
 
- créer un système de commentaire visiteur (captcha)
-
- Hero :
- Animation sur un text qui arrive sur la page
-
- Realisation
-
- Services
+--créer un post blog :
+    check du formulaire pour les données entrées 
+    ajout du système de tag

@@ -10,12 +10,12 @@ const PostList = (posts) => {
     
 
     return (
-            <article className="cards" data-date={"Créé le "+createDate} data-color={item.color} id="cards">
+            <article className="cards" data-date={"Publié le "+createDate} data-color={item.color} id="cards">
                 <Link to={"../blog/"+item.slug}>
                     <header className="cards__header">
                         <div className="cards__title">
                             <h2 className="cards__title">{item.title}</h2>
-                            <img src={"./images/"+item.image} alt={item.imageTitle} />
+                            <img src={"./images/blog/"+item.image} alt={item.imageTitle} />
                         </div>
                         <div className="cards__subtitle">
                             <p><FontAwesomeIcon icon={faClock} /> Lecture : {item.timeRead < 60 ? item.timeRead+ " minutes" : (item.timeRead / 60) + " heures"}</p>
@@ -25,7 +25,7 @@ const PostList = (posts) => {
                     <div className="cards__body">
                         <p>
                         {item.description + "... "}
-                        <Link to={"./"+ item.slug} title="webpack une fois, webpack toujours">lire la suite</Link>
+                        <Link to={"../blog/"+ item.slug} title="webpack une fois, webpack toujours">lire la suite</Link>
                         </p>
                     </div>
  

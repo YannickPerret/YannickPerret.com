@@ -1,6 +1,7 @@
 const mysql = require('mysql')
 const express = require("express")
 require('dotenv').config();
+const multer = require('multer');
 
 const app = express();
 const port =  3000;
@@ -11,13 +12,25 @@ const bdd = mysql.createConnection({
     database : process.env.DATABASE_NAME
 })
 
+const storage = multer.diskStorage({
+    destination: (req, file, callback) => {
+        callback(null, './src/images/blog/')
+    },
+    filename: (req, file, callback) => {
+        callback(null, file.originalname)
+    },
+})
+  
+const upload = multer({ storage: storage })
 
-app.use(express.json());
+
+
+app.use(express.json({limit: '50mb'}));
 app.use(
     express.urlencoded({
-        extended : true
-    })
-);
+        extended : true,
+        limit: '50mb'
+    }));
 
 // Add headers before the routes are defined
 app.use(function (req, res, next) {
@@ -40,10 +53,11 @@ app.use(function (req, res, next) {
 });
 
 
+
 app.get("/api/get", (req, res) =>{
     bdd.query("SELECT * FROM blog", (err, result) => {
         if(err){
-            console.log(erro)
+            console.log(err)
         }
         res.send(result)
     })
@@ -71,7 +85,6 @@ app.get("/api/getFromSearch/:sentence", (req, res) => {
     });
 });
 
-
 app.get("/api/getFromSlug/:slug", (req, res) => {
     const slug = req.params.slug;
     bdd.query(`SELECT * FROM blog WHERE slug = ?`,slug, 
@@ -83,10 +96,33 @@ app.get("/api/getFromSlug/:slug", (req, res) => {
     });
 });
 
-app.get("/api/getFromTag/:tag", (req, res) => {
-    const tag = req.params.tag;
-    console.log(tag)
-})
+
+
+/*INSERT DATA */
+app.post("/api/createPosts",(request, res) => {
+    // Validate request
+    if (!request.body) {
+        res.status(400).send({message: "Post ne peut pas être vide !"});
+        return
+    }
+
+    bdd.query(`INSERT INTO blog set ?`, request.body, (err, result) =>{
+        if (err){
+            console.log(err)
+            throw err; 
+        }
+        console.log("blog - Post envoyé avec succés : ", {id : result.insertId})
+        res.send({ id: result.insertId });
+    })
+});
+
+app.post("/api/upload", upload.single('file'), (req, res) => {
+    if (!req.file) {
+        console.log("No file upload");
+    } else{
+        console.log("image upload")
+    }
+});
 
 
 app.listen(port, () =>{

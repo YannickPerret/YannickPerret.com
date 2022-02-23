@@ -216,7 +216,7 @@ main{
 .content {
     display : flex ;
     flex-direction: column;
-    margin-left: 230px;
+    margin-left: 255px;
     max-width: 1350px;
     flex: 2;
     border-radius: 20px;
@@ -376,6 +376,12 @@ main{
 }
 
 .article{
+    display : flex ;
+    flex-direction: column;
+    margin: 0 auto;
+    margin-top : .5vh;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+
 
     min-width: 250px;
     max-width: 1280px;
@@ -443,7 +449,7 @@ main{
         text-justify: auto;
     }
 
-    &__body p::first-letter{
+    &__body p:first-child::first-letter{
         text-transform: uppercase;
         font-size: 2.5rem;
     }
@@ -471,13 +477,7 @@ main{
 }
 
 .article{
-    display : flex ;
-    flex-direction: column;
-    margin: 0 auto;
-    max-width: 1230px;
-    background-color: #f1f0f0;
-    margin-top : .5vh;
-
+    
     &__backlist{
 
     }

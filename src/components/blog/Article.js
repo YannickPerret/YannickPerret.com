@@ -28,7 +28,7 @@ const Article = () => {
                 <article className="article">
                     <header className="article__header">
                         <div className="article__title">
-                            <img src={"../images/"+item.image} alt={item.imageTitle} />
+                            <img src={"../images/blog/"+item.image} alt={item.imageTitle} />
                             <span  className="article_backList"><Link to="../blog"><FontAwesomeIcon icon={faArrowLeft} />Retour à la liste des articles</Link></span><br />
                             <h2>{item.title}</h2>
                         
@@ -39,10 +39,10 @@ const Article = () => {
                         </div>
                     </header>
                     <div className="article__body">
-                        <p>{item.content}</p>
+                        <p dangerouslySetInnerHTML={{__html: item.content}}></p>
                     </div>
                     <footer className="article__footer">
-                        <p>Créer le {dateCreated}</p> <p>{!dateUpdate ? null: "Dernière modification le "+dateUpdate}</p>
+                        <p>Publié le {dateCreated}</p> <p>{!item.dateUpdate ? null: "Dernière modification le "+dateUpdate}</p>
                     </footer>
 
                     <Comments />
