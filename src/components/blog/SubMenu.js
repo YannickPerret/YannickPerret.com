@@ -1,19 +1,18 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 const SubMenu = () =>{
+    const tagList = useSelector((state) => state.blogPost.tagList)
+
     const dispatch = useDispatch()
 
     const handleChangeCategorie = (_categories) => {
-        
-        if(_categories !== ""){
-            dispatch({
-                type : "ADD_FILTER_CATEGORIE",
-                payload : _categories
-            })
-        }
-
+        console.log(_categories)
+        dispatch({
+            type : "FILTER_BY_TAG",
+            payload : _categories
+        })
     }
 
 
@@ -22,12 +21,13 @@ const SubMenu = () =>{
             <div className="submenu__category">
                 Par Catégories
                 <ul>
-                    <li><span onClick={(() => handleChangeCategorie("reactJs"))}>ReactJs</span></li>
-                    <li><span onClick={(() => handleChangeCategorie("webpack"))}>Webpack</span></li>
-                    <li><span onClick={(() => handleChangeCategorie("nodeJs"))}>nodeJs</span></li>
-                    <li><span onClick={(() => handleChangeCategorie("Web"))}>web</span></li>
-                    <li><span onClick={(() => handleChangeCategorie("mobile"))}>Mobile</span></li>
+                    {tagList.map((element) => {
+                        return(
+                            <li key={element.id}><span onClick={(() => handleChangeCategorie(element))}>{element.name}</span></li>
+                        )
+                    })}
                 </ul>
+
             </div>
             <div className="submenu__years">
                 Par années

@@ -8,6 +8,7 @@ import PostList from "./components/blog/PostList";
 
 import '@css/_settings.scss'
 import AddPost from "./admin/AddPost";
+import Login from "./login";
 
 
 class App extends React.Component{
@@ -23,6 +24,7 @@ class App extends React.Component{
                     </Route> 
                     <Route path="blog/:slug" element={<Article />} />  
                     <Route path="admin/addpost" element={<AddPost />}/>   
+                    <Route path="login" element={<Login />} />
                 </Routes>
             </>
         )

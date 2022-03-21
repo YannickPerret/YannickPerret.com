@@ -2,6 +2,9 @@ const mysql = require('mysql')
 const express = require("express")
 require('dotenv').config();
 const multer = require('multer');
+const {sign} = require('jsonwebtoken');
+const  bCrypte = require('bcrypt');
+
 
 const app = express();
 const port =  3000;
@@ -22,8 +25,6 @@ const storage = multer.diskStorage({
 })
   
 const upload = multer({ storage: storage })
-
-
 
 app.use(express.json({limit: '50mb'}));
 app.use(
@@ -53,11 +54,16 @@ app.use(function (req, res, next) {
 });
 
 
-
+/* GET DATA ARTICLE */
 app.get("/api/get", (req, res) =>{
-    bdd.query("SELECT * FROM blog", (err, result) => {
+
+    bdd.query(`SELECT blog.*, GROUP_CONCAT(tag.name) AS 'tag' from blog
+                LEFT JOIN blog_tag on blog_tag.blog_id = blog.id
+                LEFT JOIN tag on blog_tag.tag_id = tag.id
+                GROUP BY blog.id ORDER BY blog.dateCreated DESC;`, (err, result) => {
         if(err){
             console.log(err)
+            throw err; 
         }
         res.send(result)
     })
@@ -96,9 +102,19 @@ app.get("/api/getFromSlug/:slug", (req, res) => {
     });
 });
 
+/*GET DATA TAG */
+
+app.get("/api/getTag", (req, res) =>{
+    bdd.query("SELECT * FROM tag", (err, result) => {
+        if(err){
+            console.log(err)
+        }
+        res.send(result)
+    })
+})
 
 
-/*INSERT DATA */
+/*POST DATA BLOG */
 app.post("/api/createPosts",(request, res) => {
     // Validate request
     if (!request.body) {
@@ -106,11 +122,14 @@ app.post("/api/createPosts",(request, res) => {
         return
     }
 
-    bdd.query(`INSERT INTO blog set ?`, request.body, (err, result) =>{
+    const {title, description, content, image, titleImage, timeRead, slug, color} = request.body
+
+    bdd.query(`INSERT INTO blog set ?`, {title, description, content, image, titleImage, timeRead, slug, color}, (err, result) =>{
         if (err){
             console.log(err)
             throw err; 
         }
+        
         console.log("blog - Post envoyé avec succés : ", {id : result.insertId})
         res.send({ id: result.insertId });
     })
@@ -125,6 +144,31 @@ app.post("/api/upload", upload.single('file'), (req, res) => {
 });
 
 
+/*AUTHENTIFICATION LOGIN */
+
+app.post("/auth/login", async (req, res) => {
+    const {username, password} = req.body;
+
+    await bdd.query(`SELECT * FROM users WHERE username = ?`, username, (error, result) => {
+        if(error){
+            res.json({error :"L'utilisateur n'existe pas"});
+            return
+        }
+        const user = result[0]
+
+        bCrypte.compare(password, user.password, async (error, isValid) => {
+            if(isValid){
+                const accessToken = sign({username : user.username, id : user.id},"Tunetrouverasjamaismonsecret")
+                console.log("oui ", accessToken)
+                res.send(accessToken)
+            }else{
+                res.json({error:"Nom d'utilisateur ou mot de passe incorrecte"})
+            }
+        })
+    })
+})
+
+
 app.listen(port, () =>{
-    console.log(`NodeJs - Database to http://localhost:${port}`)
+    console.log(`PortFolio - Database to http://localhost:${port}`)
 });

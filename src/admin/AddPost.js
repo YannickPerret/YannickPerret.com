@@ -4,15 +4,16 @@ import { Link } from 'react-router-dom';
 import {convertToRaw} from "draft-js";
 import { Editor } from "react-draft-wysiwyg";
 import draftToHtml from "draftjs-to-html";
-//import { convertToHTML } from 'draft-convert';
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
-
 import regeneratorRuntime from "regenerator-runtime";
-
-
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllTag } from '../redux/reducer/BlogAddPost';
 
 const AddPost = () => {
+
+  const  dispatch = useDispatch();
+  const tag = useSelector((state) => state.blogPost.tag)
 
 
   const [billet, setBillet] = useState({
@@ -28,22 +29,24 @@ const AddPost = () => {
     slug : "",
     color : "#FFFFFF",
   });
-
-  //const [image, setImage] = useState({preview:null, data: null})
   const [postId, setPostId] = useState(null);
+
+  const [tagList, setTagList] = useState([])
 
 
   useEffect(() =>{
-    console.log(billet.image.data)
+    if(tag.length === 0){
+      dispatch(getAllTag())
+    }
 
     if (!billet.image.data) return;
-
     const newImageURL = URL.createObjectURL(billet.image.data);
+
     setBillet({...billet, image :{...billet.image, preview: newImageURL}})
 
+  }, [billet.image.data, tag])
 
 
-  }, [billet.image.data])
 
   const handleSubmitForm = async (event) =>{
 
@@ -52,6 +55,11 @@ const AddPost = () => {
     const formData = new FormData();
     formData.append("file", billet.image.data);
     formData.append("fileName", billet.image.data.name);
+
+    // Créer une fonction pour tester les valeurs envoyés
+    // longueur pour le text
+    // type pour les numéros
+    // etc
 
     const requestOptions = {
       method: 'POST',
@@ -65,16 +73,16 @@ const AddPost = () => {
         timeRead: billet.timeRead,
         slug: billet.slug,
         color: billet.color
-       })
+       }),
+      tag : JSON.stringify(tagList)
     };
 
     try{
 
-      await fetch('http://192.168.1.102:3000/api/createPosts', requestOptions)
-      .then(response => response.json())
-      .then(data => setPostId(data.id));
+      const createPost = await fetch('http://192.168.1.102:3000/api/createPosts', requestOptions)
+      fetch('http://192.168.1.102:3000/api/upload', {method: 'POST', body:formData})
 
-      await fetch('http://192.168.1.102:3000/api/upload', {method: 'POST', body:formData})
+      createPost.then(data => setPostId(data.id));
 
     }catch(e){
       console.log(e)
@@ -85,7 +93,7 @@ const AddPost = () => {
 
 
   const handleChangeTitle = (e) =>{
-    setBillet({...billet, title:e.target.value})
+      setBillet({...billet, title:e.target.value})
   }
 
   const handleChangeDescription = (e) =>{
@@ -109,11 +117,22 @@ const AddPost = () => {
   const handleChangeImage = (e) => {
     setBillet({...billet, image :{...billet.image, data: e.target.files[0]}})
   }
+
+  //Add tag in tagList
+  const handleAddTag = (e) =>{
+    setTagList([...tagList, tag[e.target.value]])
+  }
+
+
+  //Remove tag in tagList
+  const handleRemoveTag = (_id) =>{
+    setTagList(tagList.filter(item => item.id !== _id))
+  }
   
  
   return(
       <div className='addPost'>
-        {postId >= 1 ? <div>Le billet de blog a bien été créer ! - <Link to={"../blog/"+billet.slug}>Voir le post créer</Link></div>
+        {postId >= 1 ? <div>Le billet de blog a bien été créé ! - <Link to={"../blog/"+billet.slug}>Voir le post créé</Link></div>
         :
         <form onSubmit={handleSubmitForm} className="formAddPost" encType='multipart/form-data'>  
         <h1>Ajouter un article au blog</h1>
@@ -172,6 +191,30 @@ const AddPost = () => {
             <div>
               <label>Couleur de la cards : </label>
               <input type="color" placeholder={"La couleur de l'encadré"} value={billet.color} onChange={handleChangeColor}/>
+            </div>
+
+            <div>
+              <label>Ajouter une catégories</label>
+              <form>
+
+            
+              <select onChange={handleAddTag}>
+                {tag.map((element, key) => {
+                  return(
+                    <option value={key} key={key}>{element.name}</option>
+                  )
+                })}
+               
+              </select>
+              </form>
+
+              <p>{tagList.map((element, key) => { 
+                return (
+                <span key={key} onClick={(() => {handleRemoveTag(element.id)})}>{element.name} &nbsp; X </span>
+                )}
+              )}
+              </p>
+              
             </div>
             
           </div>

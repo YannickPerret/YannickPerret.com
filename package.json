@@ -5,7 +5,8 @@
   "main": "./src/index.js",
   "scripts": {
     "build": "webpack --mode=production",
-    "dev": "webpack  serve --open --hot --mode=development"
+    "dev": "webpack  serve --open --hot --mode=development",
+    "server": "node server.js"
   },
   "keywords": [],
   "author": "",
@@ -17,6 +18,7 @@
     "@babel/preset-react": "^7.16.7",
     "@fortawesome/fontawesome-free": "^6.0.0",
     "@fortawesome/free-brands-svg-icons": "^6.0.0",
+    "@sequelize/core": "^7.0.0-alpha.10",
     "autoprefixer": "^10.4.2",
     "babel-loader": "^8.2.3",
     "css-loader": "^6.5.1",
@@ -47,9 +49,10 @@
     "@fortawesome/free-regular-svg-icons": "^6.0.0-beta3",
     "@fortawesome/free-solid-svg-icons": "^6.0.0-beta3",
     "@fortawesome/react-fontawesome": "^0.1.17",
-    "draft-convert": "^2.1.12",
+    "bcrypt": "^5.0.1",
     "draft-js": "^0.11.7",
     "draftjs-to-html": "^0.9.1",
+    "jsonwebtoken": "^8.5.1",
     "multer": "^1.4.4",
     "react-draft-wysiwyg": "^1.14.7",
     "react-router-dom": "^6.2.1",

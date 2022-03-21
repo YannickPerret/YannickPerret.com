@@ -4,24 +4,26 @@ import SearchBar from "./components/blog/SearchBar.js";
 import PostList from "./components/blog/PostList.js";
 
 import { useSelector, useDispatch } from 'react-redux';
-import { getAllPosts } from './redux/reducer/BlogReducer';
+import { getAllPosts, getAllTag} from './redux/reducer/BlogReducer';
 import Categorie from "./components/blog/Categorie.js";
 
 
 
 const Blog = () => {
 
-    const postsList = useSelector((state) => state.posts)
-    const filterCategorie = useSelector((state) => state.filterCategorie)
+    const postsList = useSelector((state) => state.blogPost.posts)
+    const filterCategorie = useSelector((state) => state.blogPost.postsFilter)
 
     const dispatch = useDispatch()
 
 
-
     useEffect(()=> {
+        
         if(postsList.length === 0){
             dispatch(getAllPosts())
+            dispatch(getAllTag())
         }
+        
     }, [postsList])
     
     return(
@@ -33,24 +35,20 @@ const Blog = () => {
 
                 <Categorie />
 
-                {filterCategorie.length >= 1 ?
-                    postsList.sort((a, b) => b.dateCreated - a.dateCreated)
-                    .map((element, index) => {
+                {filterCategorie.length !== 0 ?
+                    [filterCategorie.map((element, index) => {
+                       return(
+                        <PostList posts={element} key={index} />
+                       )
+                    })]
+                    :
+                    postsList.map((element, index) => {
                         return(
-                            filterCategorie.map((categorie) => {
-                            if(element.tag.toLowerCase().includes(categorie.toLowerCase())){
-                                return(<PostList posts={element} key={index} />)
-                            }
-                        })
+                            console.log(element),
+                            <PostList posts={element} key={index} />
                         )
                     })
-                :
-                postsList.sort((a, b) =>  b.dateCreated - a.dateCreated).map((element, index) => {
-                    return(
-                        <PostList posts={element} key={index} />
-                    )
-                })
-                }
+                }      
                 
             
             </section>

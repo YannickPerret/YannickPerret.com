@@ -3,20 +3,19 @@ import { useDispatch, useSelector } from 'react-redux';
 
 const Categorie = () => {
 
-    const tag = useSelector((state) => state.filterCategorie)
+    const tagSelect = useSelector((state) => state.blogPost.tagSelect)
     const dispatch = useDispatch()
 
     const handleRemoveTag = (_tag) => {
         dispatch({
-            type : "REMOVE_FILTER_CATEGORIE",
+            type : "REMOVE_FILTER_BY_TAG",
             payload : _tag
         })
 
     }
-
     return (
         <div className='content_subCategorie'>
-        {tag.map((element, index) => {
+        {tagSelect.map((element, index) => {
             return(
                 <div className='subCategorie__color--blue' onClick={() => handleRemoveTag(element)} key={index}>{element} X</div>
             )

@@ -11,9 +11,9 @@ const Article = () => {
     const dispatch = useDispatch()
     const slug = useParams().slug
 
-    const item = useSelector((state) => state.selectedPost)
+    const item = useSelector((state) => state.blogPost.selectedPost)
 
-    useEffect(()=> {
+     useEffect(()=> {
         window.scrollTo(0, 0)
 
         if(slug.length > 0){
@@ -21,8 +21,23 @@ const Article = () => {
         }
     }, [])
 
+    const timeforRead = (minutes) => 
+    {
+        let heure = parseInt(minutes / 60);
+        let minutesRestante = (minutes % 60);
+
+        if(heure < 1) return minutes + " minutes";
+
+        if(minutesRestante === 0){
+            return heure + " heure"}
+        else{
+            return heure + " heure " + minutesRestante + " minutes";
+        } 
+    }
+
     const dateCreated = new Date(item.dateCreated).toLocaleString("fr-FR")
     const dateUpdate = new Date(item.dateUpdate).toLocaleString("fr-FR")
+    
     return (
             <section className="article" id="blog">
                 <article className="article">
@@ -34,8 +49,9 @@ const Article = () => {
                         
                         </div>
                         <div className="article__subtitle">
-                            <p><FontAwesomeIcon icon={faClock} /> Lecture : {item.timeRead < 60 ? item.timeRead+ " minutes" : (item.timeRead / 60) + " heures"} </p>
-                            <p><span><Link to="#">#Webpack</Link></span>  <span><Link to="#">#nodeJS</Link></span>  <span><Link to="#">#Javascript</Link></span>   <span><Link to="#">#Web</Link></span></p> 
+                            <p><FontAwesomeIcon icon={faClock} /> Lecture : {timeforRead(item.timeRead)} </p>
+                            <p>
+                            </p> 
                         </div>
                     </header>
                     <div className="article__body">
