@@ -9,10 +9,10 @@ const  bCrypte = require('bcrypt');
 const app = express();
 const port =  3000;
 const bdd = mysql.createConnection({
-    host : process.env.DATABASE_HOST,
-    user : process.env.DATABASE_USER,
-    password : process.env.DATABASE_PASSWORD,
-    database : process.env.DATABASE_NAME
+    host : "127.0.0.1",
+    user : "root",
+    password : "",
+    database : "portfolio"
 })
 
 const storage = multer.diskStorage({
@@ -29,7 +29,7 @@ const upload = multer({ storage: storage })
 app.use(express.json({limit: '50mb'}));
 app.use(
     express.urlencoded({
-        extended : true,
+        extended : false,
         limit: '50mb'
     }));
 
@@ -47,7 +47,7 @@ app.use(function (req, res, next) {
 
     // Set to true if you need the website to include cookies in the requests sent
     // to the API (e.g. in case you use sessions)
-    res.setHeader('Access-Control-Allow-Credentials', false);
+    res.setHeader('Access-Control-Allow-Credentials', true);
 
     // Pass to next layer of middleware
     next();
@@ -135,6 +135,7 @@ app.post("/api/createPosts",(request, res) => {
     })
 });
 
+
 app.post("/api/upload", upload.single('file'), (req, res) => {
     if (!req.file) {
         console.log("No file upload");
@@ -146,26 +147,43 @@ app.post("/api/upload", upload.single('file'), (req, res) => {
 
 /*AUTHENTIFICATION LOGIN */
 
-app.post("/auth/login", async (req, res) => {
+app.post("/auth/login", (req, res) => {
+
     const {username, password} = req.body;
-
-    await bdd.query(`SELECT * FROM users WHERE username = ?`, username, (error, result) => {
-        if(error){
-            res.json({error :"L'utilisateur n'existe pas"});
-            return
-        }
-        const user = result[0]
-
-        bCrypte.compare(password, user.password, async (error, isValid) => {
-            if(isValid){
-                const accessToken = sign({username : user.username, id : user.id},"Tunetrouverasjamaismonsecret")
-                console.log("oui ", accessToken)
-                res.send(accessToken)
-            }else{
-                res.json({error:"Nom d'utilisateur ou mot de passe incorrecte"})
+    try{
+        bdd.query(`SELECT * FROM users WHERE username = ?`, username, (error, result) => {
+            if (error){
+                console.log(error)
+                return
             }
-        })
-    })
+            let user = result[0]
+            if(user){
+               bCrypte.compare(password, user.password, function(err, isMatch){
+                    if(err){
+                        throw err
+                    }else if(!isMatch){
+                        console.log("Les deux mots de passe ne correspondent pas")
+                    }else{
+                        console.log("Password correspondent")
+                        const token = sign({username : user.username, id : user.id},"Tunetrouverasjamaismonsecret")
+                        if(token){
+                            bdd.query(`UPDATE users SET token = '${token}' WHERE username = '${username}'`, (error, result2) =>{
+                                if (error){
+                                    console.log(error)
+                                    return
+                                }
+                                res.send({user:username, token:token})
+                            })
+                        }
+                    }
+                })
+            }
+        }) 
+    } catch(e){
+        console.error(e)
+    }
+    
+    
 })
 
 

@@ -65,3 +65,29 @@
         margin : 0 auto;
     }
 }
+
+
+/*CONNEXION */
+
+.login{
+    display : flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 500px;
+    height: 100vh;
+    margin: auto;
+}
+
+.form_login{
+    display : flex;
+    flex-direction: column;
+    align-items: center;
+    border :1px solid rgb(200, 199, 199);
+
+
+    & div{
+        width: 50%;
+    }
+}
+
