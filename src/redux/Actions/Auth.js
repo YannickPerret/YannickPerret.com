@@ -1,4 +1,3 @@
-
 const setToken = (token) =>{
     localStorage.setItem("token", token)
     localStorage.setItem("lastLoginTime", new Date(Date.now()).getTime());
@@ -48,34 +47,42 @@ export const loginUser = (user) =>{
 export const logoutUser = () =>{
     
     fetch("http://127.0.0.1:3000/auth/logout", {
-            method: "DELETE",
-            headers : {
-                'Accept': "application/json",
-                'Content-type': 'application/json',
-                Authorization : getToken(),
-            },
-        }).then((res) => {
-            deleteToken()
-            if(res.ok){
-                return res.json()
-                .then(() => useDispatch({type: NOT_AUTHENTICATED}))
-            }else {
-                return res.json().then((error) => {
-                    useDispatch({type : NOT_AUTHENTICATED})
-                })
-            }
-        })
+        method: "DELETE",
+        headers : {
+            'Accept': "application/json",
+            'Content-type': 'application/json',
+            Authorization : getToken(),
+        },
+    }).then((res) => {
+        deleteToken()
+        if(res.ok){
+            return res.json()
+            .then(() => useDispatch({type: NOT_AUTHENTICATED}))
+        }else {
+            return res.json().then((error) => {
+                useDispatch({type : NOT_AUTHENTICATED})
+            })
+        }
+    })
 }
 
 export const checkAuth = () => {
-    return (dispatch) => {
-        return fetch("http://127.0.0.1/auth/current_user", {
+    const token = getToken()
+    return fetch("http://127.0.0.1:3000/auth/checkAuth", {
+            method:'POST',
+            mode: 'no-cors',
             headers:{
                 Accept: "application/json",
-                "Content-Type": "application/json",
-                Authorization: getToken()
+                'Content-Type': "application/json",
             },
-        }).then((res) => {
+            body: JSON.stringify({
+                token:token
+            })
+        });
+        
+        
+        
+        /*.then((res) => {
             if(res.ok){
                 return res
                 .json()
@@ -84,6 +91,5 @@ export const checkAuth = () => {
             }else{
                 return Promise.reject(dispatch({type: NOT_AUTHENTICATED}))
             }
-        })
-    }
+        })*/
 }

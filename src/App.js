@@ -11,12 +11,16 @@ import AddPost from "./admin/AddPost";
 import Login from "./admin/login";
 import PostListAdmin from "./admin/PostList";
 import { useSelector } from "react-redux";
+import { checkAuth } from "./redux/Actions/Auth";
 
 
 //class App extends React.Component{
 const App = () =>{
     const isAuth = useSelector((state) => state.user.loggedIn)
 
+    useEffect(() => {
+        checkAuth();
+    })
     return (
         <>
             <h1>{`fvcvvvvvvvvvvvvvv Auth : ${isAuth}`}</h1>

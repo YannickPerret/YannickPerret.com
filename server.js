@@ -2,7 +2,7 @@ const mysql = require('mysql')
 const express = require("express")
 require('dotenv').config();
 const multer = require('multer');
-const {sign} = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 const  bCrypte = require('bcrypt');
 
 
@@ -14,6 +14,16 @@ const bdd = mysql.createConnection({
     password : "",
     database : "blog"
 })
+
+
+const generateAccessToken = (user, time) =>{
+    return jwt.sign(user, "jdsksdhfspkfsjdfoisjhfhsf", {expiresIn: time})
+}
+
+const verifyAccessToken = (token) =>{
+
+}
+
 
 const storage = multer.diskStorage({
     destination: (req, file, callback) => {
@@ -166,7 +176,7 @@ app.post("/auth/login", (req, res) => {
                             console.log("Les deux mots de passe ne correspondent pas")
                         }else{
                             console.log("Password correspondent")
-                            const token = sign({username : user.username, id : user.id},"Tunetrouverasjamaismonsecret")
+                            const token = generateAccessToken({username : user.username, id : user.id}, "2h")
                             if(token){
                                 bdd.query(`UPDATE users SET token = '${token}' WHERE username = '${username}'`, (error, result2) =>{
                                     if (error){
@@ -180,6 +190,9 @@ app.post("/auth/login", (req, res) => {
                         }
                     })
                 }
+                else{
+                    console.log("Aucune utilisateur n'existe avec ce nom d'utilisateur")
+                }
             }) 
         } catch(e){
             console.error(e)
@@ -187,9 +200,26 @@ app.post("/auth/login", (req, res) => {
     }
     else {
         res.status(400).send({error:"Veuillez entrez un pseudo et mot de passe valide"})
+    }  
+})
+
+app.post("/auth/checkAuth", (req, res) =>{
+
+   
+    const token = req.body.token
+    console.log(req.body)
+    if(token){
+       try 
+        {
+           const decode = jwt.verify(token, "jdsksdhfspkfsjdfoisjhfhsf")
+        }
+        catch(e){
+            console.log(e)
+        }
+
+    }else{
+        res.sendStatus(403);
     }
-    
-    
 })
 
 
