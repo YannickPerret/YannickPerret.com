@@ -12,7 +12,7 @@ const bdd = mysql.createConnection({
     host : "127.0.0.1",
     user : "root",
     password : "",
-    database : "portfolio"
+    database : "blog"
 })
 
 const storage = multer.diskStorage({
@@ -150,37 +150,43 @@ app.post("/api/upload", upload.single('file'), (req, res) => {
 app.post("/auth/login", (req, res) => {
 
     const {username, password} = req.body;
-    try{
-        bdd.query(`SELECT * FROM users WHERE username = ?`, username, (error, result) => {
-            if (error){
-                console.log(error)
-                return
-            }
-            let user = result[0]
-            if(user){
-               bCrypte.compare(password, user.password, function(err, isMatch){
-                    if(err){
-                        throw err
-                    }else if(!isMatch){
-                        console.log("Les deux mots de passe ne correspondent pas")
-                    }else{
-                        console.log("Password correspondent")
-                        const token = sign({username : user.username, id : user.id},"Tunetrouverasjamaismonsecret")
-                        if(token){
-                            bdd.query(`UPDATE users SET token = '${token}' WHERE username = '${username}'`, (error, result2) =>{
-                                if (error){
-                                    console.log(error)
-                                    return
-                                }
-                                res.send({user:username, token:token})
-                            })
+    if(username.length > 5 && password.length > 5){
+        try{
+            bdd.query(`SELECT * FROM users WHERE username = ?`, username, (error, result) => {
+                if (error){
+                    console.log(error)
+                    throw error;
+                }
+                let user = result[0]
+                if(user){
+                   bCrypte.compare(password, user.password, function(err, isMatch){
+                        if(err){
+                            throw err
+                        }else if(!isMatch){
+                            console.log("Les deux mots de passe ne correspondent pas")
+                        }else{
+                            console.log("Password correspondent")
+                            const token = sign({username : user.username, id : user.id},"Tunetrouverasjamaismonsecret")
+                            if(token){
+                                bdd.query(`UPDATE users SET token = '${token}' WHERE username = '${username}'`, (error, result2) =>{
+                                    if (error){
+                                        console.log(error)
+                                        throw error;
+                                    }
+                                    res.set({"Authorization":token})
+                                    res.send({token:token})
+                                })
+                            }
                         }
-                    }
-                })
-            }
-        }) 
-    } catch(e){
-        console.error(e)
+                    })
+                }
+            }) 
+        } catch(e){
+            console.error(e)
+        }
+    }
+    else {
+        res.status(400).send({error:"Veuillez entrez un pseudo et mot de passe valide"})
     }
     
     
