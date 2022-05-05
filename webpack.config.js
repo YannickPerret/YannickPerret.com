@@ -16,7 +16,6 @@ let config = {
         filename : 'js/main.js',
 		path: path.resolve(__dirname, './public'),
         assetModuleFilename: 'images/[name][ext]',
-        publicPath: '/',
     },
     resolve: {
 		extensions: ['.js', '.jsx', '.png', '.jpg', '.mp4', '.gif'],
