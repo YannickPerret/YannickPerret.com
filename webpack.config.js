@@ -10,7 +10,7 @@ let titlePage = 'Webpack - Starter Kit'
 
 let config = {
 
-    entry: './src/index.js',
+    entry: './src/main.js',
 
     output:{
         filename : 'js/main.js',
