@@ -5,7 +5,7 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 
-let titlePage = 'One-Admin - Votre partenaire de confiance'
+let titlePage = 'Webpack - Starter Kit'
 
 
 let config = {
