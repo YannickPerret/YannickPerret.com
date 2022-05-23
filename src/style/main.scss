@@ -12,11 +12,6 @@
 }
 
 
-
-@font-face {
-    font-family: openSansExtrabold;
-    src: url(./font/OpenSans-ExtraBold.ttf);
-  }
   @font-face {
     font-family: oxygenRegular;
     src: url(./font/Oxygen-Regular.ttf);
@@ -26,8 +21,15 @@
     src: url(./font/Roboto-Regular.ttf);
   }
 
+  @font-face {
+    font-family: 'DreamwoodRegular';
+    src: url('./font/DreamwoodRegular.ttf') format('truetype');
+
+}
+
 body {
-    max-width: 100%;
+    width: 100%;
+    font-family: calling-code;
 }
 
 a {
@@ -35,25 +37,5 @@ a {
     text-decoration: none;
 }
 p{
-    font-family: 'robotoRegular', 'Courier New', Courier, monospace;
     font-size: 1rem;
-}
-
-h1{
-    font-size: 2.9rem;
-    font-family: 'openSansExtrabold', 'Courier New', Courier, monospace;
-    font-weight: 1000;
-}
-
-h2{
-    font-family: 'oxygenRegular', 'Courier New', Courier, monospace;
-    font-size: 1.7rem;
-    text-transform: uppercase;
-}
-
-h3{
-    font-family: 'oxygenRegular', 'Courier New', Courier, monospace;
-    font-size: 1.3rem;
-    text-transform: uppercase;
-
 }

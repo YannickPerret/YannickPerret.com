@@ -36,6 +36,8 @@
     "webpack-dev-server": "^4.7.3"
   },
   "dependencies": {
-    "@babel/preset-react": "^7.17.12"
+    "@babel/preset-react": "^7.17.12",
+    "@reduxjs/toolkit": "^1.8.1",
+    "react-router-dom": "^6.3.0"
   }
 }
