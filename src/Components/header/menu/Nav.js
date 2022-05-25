@@ -40,8 +40,6 @@ const Nav = () => {
         activeItem?.removeAttribute('aria-selected')
         e.currentTarget.setAttribute('aria-selected', 'true')
 
-        console.log(indicator)
-
         indicator.animate([
             {transform: getTransform(e.currentTarget)}
         ],{
@@ -57,9 +55,9 @@ const Nav = () => {
         <nav className="nav_main">
             <ul className='nav__List'>
                 <li><Link to="/" aria-selected="true">Qui suis-je</Link></li>
-                <li><Link to="/">Mes expertises</Link></li>
+                <li><Link to="/">Mon expertise</Link></li>
                 <li><Link to="/">Mes expériences</Link></li>
-                <li><Link to="/">Dernier projets</Link></li>
+                <li><Link to="/">Derniers projets</Link></li>
                 <li><Link to="/">Me contacter</Link></li>
             </ul>
         </nav>
