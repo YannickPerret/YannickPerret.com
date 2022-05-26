@@ -54,11 +54,10 @@ const Nav = () => {
     return (
         <nav className="nav_main">
             <ul className='nav__List'>
-                <li><Link to="/" aria-selected="true">Qui suis-je</Link></li>
-                <li><Link to="/">Mon expertise</Link></li>
-                <li><Link to="/">Mes expériences</Link></li>
-                <li><Link to="/">Derniers projets</Link></li>
-                <li><Link to="/">Me contacter</Link></li>
+                <li><Link to="/a-propos-de-moi" aria-selected="true">Qui suis-je</Link></li>
+                <li><Link to="/mes-competences">Mon expertise</Link></li>
+                <li><Link to="/mes-derniers-projets">Derniers projets</Link></li>
+                <li><Link to="/me-contacter">Me contacter</Link></li>
             </ul>
         </nav>
     );

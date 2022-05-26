@@ -11,6 +11,15 @@
     box-sizing: border-box;
 }
 
+/* VARIABLE */
+$colorPrimary : rgb(234, 237, 56);
+$colorPrimaryV2 : rgb(232, 236, 21);
+$colorThird : #53c3eb;
+
+
+
+
+
 
   @font-face {
     font-family: oxygenRegular;
@@ -24,12 +33,22 @@
   @font-face {
     font-family: 'DreamwoodRegular';
     src: url('./font/DreamwoodRegular.ttf') format('truetype');
+  }
+  @font-face {
+    font-family: 'SprintMay';
+    src: url('./font/Spring_May.ttf') format('truetype');
+  }
 
-}
 
 body {
     width: 100%;
-    font-family: calling-code;
+    height: 100vh;
+    font-family: "calling-code",sans-serif;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar{
+      display: none;
+    }
 }
 
 a {
@@ -43,11 +62,29 @@ p{
 h1 {
   font-size: 40px;
 }
+
 h2{
   font-size: 30px;
 }
+
 h3{
-  font-size: 20px;
+  font-size: 1.8vw;
+  position: relative;
+
+  & span {
+    color : $colorPrimaryV2;
+  }
+
+}
+
+
+h4{
+  font-size: 1.5vw;
+  position: relative;
+
+  & span {
+    color : $colorPrimaryV2;
+  }
 }
 
 button {

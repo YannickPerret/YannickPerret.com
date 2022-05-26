@@ -67,7 +67,7 @@ header{
         height: 100%;
         opacity: 0;
 
-        background-image: linear-gradient(to bottom, #53c3ebc7, #00eae29d, #7feeffaf, #b0eefd69, hsla(184, 70%, 96%, 0));
+        background-image: linear-gradient(to bottom, #53c3ebd8, #00eae2ab, #7feeffaf, #b0eefd8a, hsla(184, 70%, 96%, 0));
 
         z-index: 5;
         animation: visibility 3s forwards;
@@ -79,22 +79,32 @@ header{
             align-self: center;
             justify-content: space-between;
             align-items: center;
-            height: 60%;
+            height: 58%;
             width: 90%;
         }
 
         &__top{
             display : flex;
             flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            width: 100%;
+            height: 20%;
         }
+
         &__middle{
             display: flex;
             flex-direction: column;
             justify-content: space-evenly;
+            align-items: center;
             height: 50%;
-            width: 100%;
-            border-top :rgb(234, 237, 56) 3px solid;
-            border-bottom :rgb(234, 237, 56) 3px solid;
+            width: 86%;
+            border-top :$colorPrimary 3px solid;
+            border-bottom : $colorPrimary 3px solid;
+            & p {
+                font-size: 1vw;
+            }
+
             .hero__competence {
                 display: flex;
                 flex-wrap: wrap;
@@ -116,7 +126,15 @@ header{
                     font-size: 10px;
 
                     &:hover{
-                        background-color:rgb(234, 237, 56);
+                        background-color:$colorPrimary;
+                    }
+                }
+
+                &__link{
+                    font-size: .8vw;
+
+                    &:hover{
+                        border-bottom: 2px solid #000;
                     }
                 }
             }
@@ -137,6 +155,7 @@ header{
             }
             ul li a{
                 color : #000;
+                font-size: .9vw;
 
                 &:hover{
                     border-bottom : 2px solid #000;
@@ -144,27 +163,11 @@ header{
             }
         }
         &__title{
-            width: 100%;
-            font-size: 2.3rem;
+            font-size: 2.4vw;
+            font-family: SprintMay;
             color : #000;
-            letter-spacing: 11px;
+            letter-spacing: 2px;
             position: relative;
-
-
-            &::first-letter{
-                font-size: 2rem;
-            }
-        }
-        &__title::before{
-            content:"";
-            position: absolute;
-            overflow: hidden;
-            left : 3%;
-            bottom : 0;
-            width: 0%;
-            height: 1vh;
-            background-color: rgb(234, 237, 56);
-            border-radius: 15px;
         }
     }
 
@@ -195,15 +198,17 @@ header{
 
         &__title{
             & h1{
+
             color : #fff;
             -webkit-text-stroke: 1px;
             -webkit-text-stroke-color: #000;
 
                 & span{
                     font-size: 55px;
-                    color :rgb(234, 237, 56);
+                    color :$colorPrimary;
                     -webkit-text-stroke : 4px;
                     letter-spacing: 6px;
+
                 }
             }
         }
@@ -231,18 +236,22 @@ header{
         }
         &__action{
             display: flex;
-            justify-content: center;
+            justify-content: space-evenly;
             width: 100%;
-            height: 5%;
+            height: 6%;
             &__button {
-                font-size: 15px;
+                font-size: 1vw;
                 width: 250px;
                 height: 45px;
                 background-color: rgb(235, 150, 39);
                 color : #fff;
                 text-transform: uppercase;
-            }
+                cursor: pointer;
 
+                &:hover{
+                    background-color: rgb(235, 85, 39);
+                }
+            }
         }
     }
 }    
@@ -287,7 +296,7 @@ nav{
         left: 0;
         height: 4px;
         width: 100px;
-        background-color: #53c3eb;
+        background-color: $colorThird;
         border-radius: 4px;
         transform-origin: 0 0;
     }

@@ -1,6 +1,9 @@
 import React from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Content = () => {
+    const navigate = useNavigate()
+
     return (
         <div className='hero__container'>
             <div className='hero__content'>
@@ -16,7 +19,8 @@ const Content = () => {
                     </p>
                 </div>
                 <div className='hero__content__action'>
-                    <button className='hero__content__action__button'>Voir mes projets</button>
+                <button className='hero__content__action__button' onClick={() => navigate("/mes-projets")}>Voir mes projets</button>
+                <button className='hero__content__action__button' onClick={() => navigate("/me-contacter")}>J'ai un projet !</button>
                 </div>
             </div>
         </div>

@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 const Sidebar = () => {
 
@@ -69,6 +70,7 @@ const Sidebar = () => {
                         <li className='hero__competence__items'>Shopify</li>
                         <li className='hero__competence__items'>WordPress</li>
                     </ul>
+                    <Link to="/mes-competences" className='hero__competence__link'>Plus de compétences</Link>
                 </div>
                 <div className='hero__sidebar__bottom'>
                     <ul>
