@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+import Hero from './Components/header/hero/Hero'
+
 class App extends Component{
    render(){
       return(
-         <div>
-            
-         </div>
+         <main>
+            <Hero />
+         </main>
       );
    }
 }

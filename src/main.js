@@ -20,14 +20,16 @@ const root = createRoot(container); // createRoot(container!) if you use TypeScr
 
 root.render(
         <BrowserRouter>   
-            <Header />         
-            <Routes>
-                <Route path="/" element={<App />}></Route>
-                <Route path="/a-propos-de-moi" element={<AboutMe />}></Route>
-                <Route path="/mes-competences" element={<Skills />}></Route>
-                <Route path="/mes-derniers-projets" element={<Projects />}></Route>
-                <Route path="/me-contacter" element={<Contact />}></Route>
-            </Routes>
+            <Header />  
+            <main>     
+                <Routes>
+                    <Route path="/" element={<App />}></Route>
+                    <Route path="/a-propos-de-moi" element={<AboutMe />}></Route>
+                    <Route path="/mes-competences" element={<Skills />}></Route>
+                    <Route path="/mes-derniers-projets" element={<Projects />}></Route>
+                    <Route path="/me-contacter" element={<Contact />}></Route>
+                </Routes>
+            </main>  
             
         </BrowserRouter>
 );

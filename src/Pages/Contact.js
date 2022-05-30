@@ -1,31 +1,45 @@
 import React, { useState } from 'react';
 import ContactInfo from '../Components/contact/contactInfo';
 import ContactProjet from '../Components/contact/contactProjet';
+import github from '../Assets/images/dev_social_github'
+import linkedin from '../Assets/images/dev_social_linkedin'
+import instagram from '../Assets/images/dev_social_instagram'
 
 const Contact = () => {
     const [infoIsOpen, setInfoIsOpen] = useState(true)
     const [projetIsOpen, setProjetIsOpen] = useState(false)
 
+    const openFastForm = () =>{
+        setInfoIsOpen(true)
+        setProjetIsOpen(false)
+    }
+
+    const openLongform = () => {
+        setInfoIsOpen(false)
+        setProjetIsOpen(true)
+    }
+
 //Créer un event onClick sur les titre h4 pour ouvrir la div destination et fermer la current div si ouverte
 
     return (
-        <div className='contact'>
+        <section className='contact'>
             <div className="contact__container">
                 <div className='contact__container__header'>
                     <h3 className='contact__container__header__title' id="contact"><span>Prendre</span> contact avec moi</h3>
 
                     <div className='contact__container__header__social'>
-                        <p>Github</p>
-                        <p>Linkedin</p>
-                        <p>Instagram</p>
+                        
+                        <img src={github} alt="découvrir mon github" width="25%" height="auto" className='social__image__hover'/>
+                        <img src={linkedin} alt="découvrir mon github" width="25%" height="auto" className='social__image__hover'/>
+                        <img src={instagram} alt="découvrir mon github" width="25%" height="auto" className='social__image__hover'/>
                     </div>
                 </div>
 
                 <div className='contact__container__body'>
-                    <h4 className='contact__container__body__title'><span>Contact</span> rapide pour des informations</h4>
+                    <h4 className='contact__container__body__title' onClick={openFastForm}><span>Contact</span> rapide pour des informations</h4>
                     <ContactInfo isOpen={infoIsOpen} />
 
-                    <h4 className='contact__container__body__title'><span>Formulaire</span> de contact pour projet</h4>
+                    <h4 className='contact__container__body__title' onClick={openLongform}><span>Formulaire</span> de contact pour projet</h4>
                     <ContactProjet isOpen={projetIsOpen} />
                 </div>
                 
@@ -57,7 +71,7 @@ const Contact = () => {
                 </div>
             </div>
             
-        </div>
+        </section>
     );
 };
 

@@ -19,8 +19,8 @@ const Content = () => {
                     </p>
                 </div>
                 <div className='hero__content__action'>
-                <button className='hero__content__action__button' onClick={() => navigate("/mes-projets")}>Voir mes projets</button>
-                <button className='hero__content__action__button' onClick={() => navigate("/me-contacter")}>J'ai un projet !</button>
+                    <button className='hero__content__action__button' onClick={() => navigate("/mes-projets")}>Voir mes projets</button>
+                    <button className='hero__content__action__button' onClick={() => navigate("/me-contacter")}>J'ai un projet !</button>
                 </div>
             </div>
         </div>

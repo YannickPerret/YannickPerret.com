@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import portrait from '../../../Assets/images/Yannick_Perret_portrait'
 
 const Sidebar = () => {
 
@@ -55,7 +56,8 @@ const Sidebar = () => {
         <div className="hero__sidebar">
             <div className='hero__sidebar__content'>
                 <div className='hero__sidebar__top'>
-                    <span className='hero__sidebar__title'>Yannick Perret</span>
+                    <img src={portrait} alt="Portrait de Yannick Perret" width={150} height={150} className='hero__sidebar__top__portrait'/>
+                    <span className='hero__sidebar__title'>Yannick Perret</span>* * *
                 </div>
                 <div className='hero__sidebar__middle'>
                     <p>Développement Web fullstack, pour une nouvelle approche du digital</p>

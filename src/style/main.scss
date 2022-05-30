@@ -94,3 +94,14 @@ button {
   border-bottom-left-radius: 12px;
   border : none;
 }
+main {
+  display : flex;
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  max-width: 100%;
+
+  background-image: url('../Assets/images/background-test-1-original.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
