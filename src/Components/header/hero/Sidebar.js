@@ -60,7 +60,7 @@ const Sidebar = () => {
                     <span className='hero__sidebar__title'>Yannick Perret</span>* * *
                 </div>
                 <div className='hero__sidebar__middle'>
-                    <p>Développement Web fullstack, pour une nouvelle approche du digital</p>
+                    <p>Développement Web fullstack, Intégration web, bonne pratique SEO et créativé au maximum !</p>
                     <ul className='hero__competence'>
                         <li className='hero__competence__items'>HTML</li>
                         <li className='hero__competence__items'>CSS</li>

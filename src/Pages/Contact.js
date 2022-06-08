@@ -29,17 +29,17 @@ const Contact = () => {
 
                     <div className='contact__container__header__social'>
                         
-                        <img src={github} alt="découvrir mon github" width="25%" height="auto" className='social__image__hover'/>
-                        <img src={linkedin} alt="découvrir mon github" width="25%" height="auto" className='social__image__hover'/>
-                        <img src={instagram} alt="découvrir mon github" width="25%" height="auto" className='social__image__hover'/>
+                        <img src={github} alt="découvrir mon github"  className='social__image'/>
+                        <img src={linkedin} alt="découvrir mon github"  className='social__image'/>
+                        <img src={instagram} alt="découvrir mon github"  className='social__image'/>
                     </div>
                 </div>
 
                 <div className='contact__container__body'>
-                    <h4 className='contact__container__body__title' onClick={openFastForm}><span>Contact</span> rapide pour des informations</h4>
+                    <h4 className='contact__container__body__title' onClick={openFastForm}>-> <span>Contact</span> rapide pour des informations</h4>
                     <ContactInfo isOpen={infoIsOpen} />
 
-                    <h4 className='contact__container__body__title' onClick={openLongform}><span>Formulaire</span> de contact pour projet</h4>
+                    <h4 className='contact__container__body__title' onClick={openLongform}>-> <span>Formulaire</span> de contact pour projet</h4>
                     <ContactProjet isOpen={projetIsOpen} />
                 </div>
                 
